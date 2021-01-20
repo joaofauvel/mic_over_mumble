@@ -1,6 +1,6 @@
 # Voice over Mumble
 
-Use Android/iOS device as your PC's microphone, using Mumble + Plumble. Or use microphone of one PC on other PC.
+Use Android device as your PC's microphone, using Mumble + [Mumla](https://f-droid.org/en/packages/se.lublin.mumla/). Or use microphone of one PC on other PC.
 
 Linux-only script, but steps can be replicated on other systems (e.g. using VoiceMeeter).
 
@@ -10,26 +10,21 @@ Alternatives: [WO Mic](https://wolicheng.com/womic/wo_mic_linux.html), [pulseaud
 
 ## Installation
 
-Install Mumble (desktop client) + Murmur (server) + Plumble (Android/iOS client). Set all 3 programs to use best quality and minimal latency. Set mobile client to always streaming.
+Install Mumble (desktop client) + uMurmur (server) + [Mumla](https://f-droid.org/en/packages/se.lublin.mumla/) (Android client). Set all 3 programs to use best quality and minimal latency. Set mobile client to always streaming.
 
-To install Mumble + Murmur on Ubuntu, you can use:
-
-```bash
-sudo apt install mumble mumble-server
-sudo systemctl stop mumble-server.service
-sudo systemctl disable mumble-server.service
-```
-
-For autodiscovery, make sure Avahi is running (it should be on Debian-based systems, but [not necessarily on others](https://github.com/pzmarzly/mic_over_mumble/issues/12)):
+To install Mumble + uMurmur on Arch, you can use:
 
 ```bash
-sudo apt install avahi-daemon
-sudo systemctl start avahi-daemon.service
+sudo pacman -S mumble umurmur
+sudo systemctl stop umurmur.service
+sudo systemctl disable umurmur.service
 ```
+
+Autodiscovery is disabled. Manually add a server on Mumla or another computer by entering the host ip address and any username.
 
 Copy `mic_over_mumble` anywhere - it will use `~/.mic_over_Mumble` as configuration directory. Don't forget to make it executable (`chmod +x mic_over_mumble`).
 
-Run `mic_over_mumble`. It will start the server on LAN, then start Mumble (if asked for nickname, enter anything other than SuperUser). Then connect your mobile device to the LAN server manually. Please note that Mumble mobile app [has some issues](https://github.com/pzmarzly/mic_over_mumble/issues/4#issuecomment-602817058).
+Run `mic_over_mumble`. It will start the server on LAN, then start Mumble (if asked for nickname, enter anything other than SuperUser). Then connect your mobile device to the LAN server manually.
 
 Then, set up your programs to use either "Monitor_of_Mumble" or "VirtualMic" as input device (they are linked). E.g. in OBS:
 
