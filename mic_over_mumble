@@ -17,11 +17,9 @@ main () {
 prepare_env () {
     if [ ! -e ~/.mic_over_Mumble ]; then
         mkdir ~/.mic_over_Mumble
+        cp umurmur.default.conf ~/.mic_over_Mumble/umurmur.conf
     fi
     cd ~/.mic_over_Mumble
-
-    # echo "bonjour=true" > umurmur.conf
-    # echo "max_bandwidth=130000;" >> umurmur.conf
 
     if [ ! -e ./initdone ]; then
         run_mumble_client_wizard
